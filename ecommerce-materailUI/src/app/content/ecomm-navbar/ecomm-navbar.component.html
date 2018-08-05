@@ -1,0 +1,20 @@
+<mat-toolbar color="primary" class="mat-elevation-z6 custom-height-toolbar">
+  <span>MyEcommWebsite</span>
+  <span class="nav-spacer"></span>
+  <button mat-icon-button *ngIf="isLoggedIn">
+    <mat-icon class="md-24" matBadge="{{cartItemCount}}" matBadgeColor="warn">shopping_cart</mat-icon>
+  </button>
+  <button mat-icon-button [matMenuTriggerFor]="UserMenu" *ngIf="isLoggedIn">
+    <mat-icon class="md-32">account_circle</mat-icon>
+  </button>
+  <mat-menu overlapTrigger="false" #UserMenu="matMenu">
+    <button mat-menu-item (click)="goToMyAccount()" *ngIf="isLoggedIn">
+      <mat-icon>account_circle</mat-icon>
+      <span>My Account</span>
+    </button>
+    <button mat-menu-item (click)="logOut()" *ngIf="isLoggedIn">
+      <mat-icon>vpn_key</mat-icon>
+      <span>Log Out</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

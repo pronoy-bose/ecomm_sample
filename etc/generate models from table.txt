@@ -1,0 +1,11 @@
+How to generate model from tables.....
+
+1. Go to http://download.jboss.org/jbosstools/updates/stable/....your eclipse version eg, /mars
+2. Go to eclipse > Help > Install new Software
+3. Paste the url in (1) there and search for Hibernate Tools and install it. It will take some time.
+4. "Hibernate Tools" allows create configuration file. And now we will create the file "hibernate.cfg.xml" using this tool.
+In Eclipse, select:
+Window/Perspective/Open Perspective/Other/Hibernate
+5. In left side Hibernate config tab Right-Click, and select "Add Configuration .." to create Hibernate configuration file.
+6. Use this link : https://o7planning.org/en/10125/using-hibernate-tools-generate-entity-classes-from-tables
+7. If error comes use hibernate version 3.5
