@@ -1,9 +1,9 @@
 package com.ecommerce.model;
 // Generated Jul 10, 2018 8:17:37 PM by Hibernate Tools 3.5.0.Final
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -39,8 +39,8 @@ public class Users implements java.io.Serializable {
 	private String userCountry;
 	private String userAddress;
 	private String userAddress2;
-	private Set<Orders> orderses = new HashSet<Orders>(0);
-	private Set<Cart> carts = new HashSet<Cart>(0);
+	private List<Orders> orderses = new ArrayList<Orders>();
+	private List<Cart> carts = new ArrayList<Cart>();
 
 	public Users() {
 	}
@@ -48,7 +48,7 @@ public class Users implements java.io.Serializable {
 	public Users(String userEmail, String userPassword, String userFirstName, String userLastName, String userCity,
 			String userState, String userZip, Boolean userEmailVerified, Date userRegistrationDate,
 			String userVerificationCode, String userIp, String userPhone, String userFax, String userCountry,
-			String userAddress, String userAddress2, Set<Orders> orderses, Set<Cart> carts) {
+			String userAddress, String userAddress2, List<Orders> orderses, List<Cart> carts) {
 		this.userEmail = userEmail;
 		this.userPassword = userPassword;
 		this.userFirstName = userFirstName;
@@ -227,20 +227,20 @@ public class Users implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
-	public Set<Orders> getOrderses() {
+	public List<Orders> getOrderses() {
 		return this.orderses;
 	}
 
-	public void setOrderses(Set<Orders> orderses) {
+	public void setOrderses(List<Orders> orderses) {
 		this.orderses = orderses;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
-	public Set<Cart> getCarts() {
+	public List<Cart> getCarts() {
 		return this.carts;
 	}
 
-	public void setCarts(Set<Cart> carts) {
+	public void setCarts(List<Cart> carts) {
 		this.carts = carts;
 	}
 

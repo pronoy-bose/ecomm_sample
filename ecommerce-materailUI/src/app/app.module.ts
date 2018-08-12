@@ -1,3 +1,4 @@
+import { HomeService } from './services/home-service.service';
 import { AppRoutingModule } from './app.routing';
 import { MaterialModule } from './material';
 import { BrowserModule } from '@angular/platform-browser';
@@ -35,7 +36,7 @@ import { EcommNavbarComponent } from './content/ecomm-navbar/ecomm-navbar.compon
   entryComponents: [
     AlertSnackbarComponent,
   ],
-  providers: [AuthService],
+  providers: [AuthService, HomeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

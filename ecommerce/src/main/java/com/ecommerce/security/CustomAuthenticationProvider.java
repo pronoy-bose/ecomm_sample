@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.ecommerce.user.VO.LoginVO;
 import com.ecommerce.user.VO.UserVO;
-import com.ecommerce.user.service.UserService;
+import com.ecommerce.user.service.IUserService;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
-	private UserService userService;
+	private IUserService userService;
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {

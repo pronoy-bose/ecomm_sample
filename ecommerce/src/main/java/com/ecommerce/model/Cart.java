@@ -1,8 +1,8 @@
 package com.ecommerce.model;
 // Generated Jul 10, 2018 8:17:37 PM by Hibernate Tools 3.5.0.Final
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,7 +23,7 @@ public class Cart implements java.io.Serializable {
 
 	private Integer cartId;
 	private Users users;
-	private Set<Cartitems> cartitemses = new HashSet<Cartitems>(0);
+	private List<Cartitems> cartitemses = new ArrayList<Cartitems>();
 
 	public Cart() {
 	}
@@ -32,7 +32,7 @@ public class Cart implements java.io.Serializable {
 		this.users = users;
 	}
 
-	public Cart(Users users, Set<Cartitems> cartitemses) {
+	public Cart(Users users, List<Cartitems> cartitemses) {
 		this.users = users;
 		this.cartitemses = cartitemses;
 	}
@@ -60,11 +60,11 @@ public class Cart implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cart")
-	public Set<Cartitems> getCartitemses() {
+	public List<Cartitems> getCartitemses() {
 		return this.cartitemses;
 	}
 
-	public void setCartitemses(Set<Cartitems> cartitemses) {
+	public void setCartitemses(List<Cartitems> cartitemses) {
 		this.cartitemses = cartitemses;
 	}
 

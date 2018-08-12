@@ -1,8 +1,8 @@
 package com.ecommerce.model;
 // Generated Jul 10, 2018 8:17:37 PM by Hibernate Tools 3.5.0.Final
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,12 +24,12 @@ public class Options implements java.io.Serializable {
 	private Integer optionId;
 	private Optiongroups optiongroups;
 	private String optionName;
-	private Set<Productoptions> productoptionses = new HashSet<Productoptions>(0);
+	private List<Productoptions> productoptionses = new ArrayList<Productoptions>(0);
 
 	public Options() {
 	}
 
-	public Options(Optiongroups optiongroups, String optionName, Set<Productoptions> productoptionses) {
+	public Options(Optiongroups optiongroups, String optionName, List<Productoptions> productoptionses) {
 		this.optiongroups = optiongroups;
 		this.optionName = optionName;
 		this.productoptionses = productoptionses;
@@ -67,11 +67,11 @@ public class Options implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "options")
-	public Set<Productoptions> getProductoptionses() {
+	public List<Productoptions> getProductoptionses() {
 		return this.productoptionses;
 	}
 
-	public void setProductoptionses(Set<Productoptions> productoptionses) {
+	public void setProductoptionses(List<Productoptions> productoptionses) {
 		this.productoptionses = productoptionses;
 	}
 

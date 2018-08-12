@@ -1,4 +1,4 @@
-package com.ecommerce.user.service;
+package com.ecommerce.user.service.Impl;
 
 import java.security.MessageDigest;
 import java.util.HashMap;
@@ -13,9 +13,10 @@ import com.ecommerce.user.VO.LoginVO;
 import com.ecommerce.user.VO.UserVO;
 import com.ecommerce.user.mapper.UserMapper;
 import com.ecommerce.user.repository.UserRepository;
+import com.ecommerce.user.service.IUserService;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements IUserService {
 	@Autowired
 	private UserRepository userRepository;
 

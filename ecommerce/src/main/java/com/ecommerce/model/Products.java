@@ -1,9 +1,9 @@
 package com.ecommerce.model;
 // Generated Jul 10, 2018 8:17:37 PM by Hibernate Tools 3.5.0.Final
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -40,9 +40,9 @@ public class Products implements java.io.Serializable {
 	private Boolean productLive;
 	private Boolean productUnlimited;
 	private String productLocation;
-	private Set<Productoptions> productoptionses = new HashSet<Productoptions>(0);
-	private Set<Orderdetails> orderdetailses = new HashSet<Orderdetails>(0);
-	private Set<Cartitems> cartitemses = new HashSet<Cartitems>(0);
+	private List<Productoptions> productoptionses = new ArrayList<Productoptions>();
+	private List<Orderdetails> orderdetailses = new ArrayList<Orderdetails>();
+	private List<Cartitems> cartitemses = new ArrayList<Cartitems>();
 
 	public Products() {
 	}
@@ -65,8 +65,8 @@ public class Products implements java.io.Serializable {
 	public Products(Productcategories productcategories, String productSku, String productName, float productPrice,
 			float productWeight, String productCartDesc, String productShortDesc, String productLongDesc,
 			String productThumb, String productImage, Date productUpdateDate, Float productStock, Boolean productLive,
-			Boolean productUnlimited, String productLocation, Set<Productoptions> productoptionses,
-			Set<Orderdetails> orderdetailses, Set<Cartitems> cartitemses) {
+			Boolean productUnlimited, String productLocation, List<Productoptions> productoptionses,
+			List<Orderdetails> orderdetailses, List<Cartitems> cartitemses) {
 		this.productcategories = productcategories;
 		this.productSku = productSku;
 		this.productName = productName;
@@ -237,29 +237,29 @@ public class Products implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "products")
-	public Set<Productoptions> getProductoptionses() {
+	public List<Productoptions> getProductoptionses() {
 		return this.productoptionses;
 	}
 
-	public void setProductoptionses(Set<Productoptions> productoptionses) {
+	public void setProductoptionses(List<Productoptions> productoptionses) {
 		this.productoptionses = productoptionses;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "products")
-	public Set<Orderdetails> getOrderdetailses() {
+	public List<Orderdetails> getOrderdetailses() {
 		return this.orderdetailses;
 	}
 
-	public void setOrderdetailses(Set<Orderdetails> orderdetailses) {
+	public void setOrderdetailses(List<Orderdetails> orderdetailses) {
 		this.orderdetailses = orderdetailses;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "products")
-	public Set<Cartitems> getCartitemses() {
+	public List<Cartitems> getCartitemses() {
 		return this.cartitemses;
 	}
 
-	public void setCartitemses(Set<Cartitems> cartitemses) {
+	public void setCartitemses(List<Cartitems> cartitemses) {
 		this.cartitemses = cartitemses;
 	}
 

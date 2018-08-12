@@ -7,7 +7,7 @@ import com.ecommerce.model.Users;
 import com.ecommerce.user.VO.LoginVO;
 import com.ecommerce.user.VO.UserVO;
 
-public interface UserService {
+public interface IUserService {
 
 	List<Users> findAll();
 	

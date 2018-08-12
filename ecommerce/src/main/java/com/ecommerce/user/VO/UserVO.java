@@ -1,7 +1,9 @@
 package com.ecommerce.user.VO;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.ecommerce.model.Cart;
@@ -25,8 +27,8 @@ public class UserVO {
 	private String userCountry;
 	private String userAddress;
 	private String userAddress2;
-	private Set<Orders> orderses = new HashSet<Orders>(0);
-	private Set<Cart> carts = new HashSet<Cart>(0);
+	private List<Orders> orderses = new ArrayList<Orders>();
+	private List<Cart> carts = new ArrayList<Cart>();
 
 	public Integer getUserId() {
 		return userId;
@@ -156,19 +158,19 @@ public class UserVO {
 		this.userAddress2 = userAddress2;
 	}
 
-	public Set<Orders> getOrderses() {
+	public List<Orders> getOrderses() {
 		return orderses;
 	}
 
-	public void setOrderses(Set<Orders> orderses) {
+	public void setOrderses(List<Orders> orderses) {
 		this.orderses = orderses;
 	}
 
-	public Set<Cart> getCarts() {
+	public List<Cart> getCarts() {
 		return carts;
 	}
 
-	public void setCarts(Set<Cart> carts) {
+	public void setCarts(List<Cart> carts) {
 		this.carts = carts;
 	}
 

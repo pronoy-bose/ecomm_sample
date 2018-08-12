@@ -1,8 +1,8 @@
 package com.ecommerce.model;
 // Generated Jul 10, 2018 8:17:37 PM by Hibernate Tools 3.5.0.Final
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,7 +21,7 @@ public class Productcategories implements java.io.Serializable {
 
 	private Integer categoryId;
 	private String categoryName;
-	private Set<Products> productses = new HashSet<Products>(0);
+	private List<Products> productses = new ArrayList<Products>();
 
 	public Productcategories() {
 	}
@@ -30,7 +30,7 @@ public class Productcategories implements java.io.Serializable {
 		this.categoryName = categoryName;
 	}
 
-	public Productcategories(String categoryName, Set<Products> productses) {
+	public Productcategories(String categoryName, List<Products> productses) {
 		this.categoryName = categoryName;
 		this.productses = productses;
 	}
@@ -57,11 +57,11 @@ public class Productcategories implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productcategories")
-	public Set<Products> getProductses() {
+	public List<Products> getProductses() {
 		return this.productses;
 	}
 
-	public void setProductses(Set<Products> productses) {
+	public void setProductses(List<Products> productses) {
 		this.productses = productses;
 	}
 

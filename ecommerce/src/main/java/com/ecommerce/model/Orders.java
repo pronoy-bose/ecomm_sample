@@ -1,9 +1,9 @@
 package com.ecommerce.model;
 // Generated Jul 10, 2018 8:17:37 PM by Hibernate Tools 3.5.0.Final
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,7 +42,7 @@ public class Orders implements java.io.Serializable {
 	private Date orderDate;
 	private boolean orderShipped;
 	private String orderTrackingNumber;
-	private Set<Orderdetails> orderdetailses = new HashSet<Orderdetails>(0);
+	private List<Orderdetails> orderdetailses = new ArrayList<Orderdetails>();
 
 	public Orders() {
 	}
@@ -72,7 +72,7 @@ public class Orders implements java.io.Serializable {
 	public Orders(Users users, float orderAmount, String orderShipName, String orderShipAddress,
 			String orderShipAddress2, String orderCity, String orderState, String orderZip, String orderCountry,
 			String orderPhone, String orderFax, float orderShipping, float orderTax, String orderEmail, Date orderDate,
-			boolean orderShipped, String orderTrackingNumber, Set<Orderdetails> orderdetailses) {
+			boolean orderShipped, String orderTrackingNumber, List<Orderdetails> orderdetailses) {
 		this.users = users;
 		this.orderAmount = orderAmount;
 		this.orderShipName = orderShipName;
@@ -261,11 +261,11 @@ public class Orders implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "orders")
-	public Set<Orderdetails> getOrderdetailses() {
+	public List<Orderdetails> getOrderdetailses() {
 		return this.orderdetailses;
 	}
 
-	public void setOrderdetailses(Set<Orderdetails> orderdetailses) {
+	public void setOrderdetailses(List<Orderdetails> orderdetailses) {
 		this.orderdetailses = orderdetailses;
 	}
 

@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ecommerce.model.Users;
 import com.ecommerce.user.VO.LoginVO;
 import com.ecommerce.user.VO.UserVO;
-import com.ecommerce.user.service.UserService;
+import com.ecommerce.user.service.IUserService;
 
 @RestController
 //@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 	@Autowired
-	private UserService userService;
+	private IUserService userService;
 
 	@GetMapping(path = "/getAllUsers")
 	public ResponseEntity<List<Users>> getAllUsers() {
