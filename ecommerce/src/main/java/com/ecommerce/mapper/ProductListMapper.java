@@ -28,7 +28,7 @@ public class ProductListMapper {
 		productVO.setProductThumb(product.getProductThumb());
 		productVO.setProductUnlimited(product.getProductUnlimited());
 		productVO.setProductWeight(product.getProductWeight());
-		productVO.setImageFileList(getImageFile(product.getProductImage()));
+		productVO.setImageFileList(getImageFile(product.getProductThumb()));
 
 		return productVO;
 	}

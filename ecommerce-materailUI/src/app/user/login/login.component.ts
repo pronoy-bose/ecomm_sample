@@ -13,15 +13,16 @@ import { SharedDataService } from '../../services/shared-data-service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   loginForm: FormGroup;
 
   constructor(private fb: FormBuilder, private authService: AuthService,
-    public snackBar: MatSnackBar, private sharedDataService:SharedDataService,
-  private router:Router) { }
+    public snackBar: MatSnackBar, private sharedDataService: SharedDataService,
+    private router: Router) { }
 
   createLoginForm() {
     this.loginForm = this.fb.group({
-      userEmail: ['', [Validators.required,Validators.email]],
+      userEmail: ['', [Validators.required, Validators.email]],
       userPassword: ['', Validators.required],
     });
   }
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
         .subscribe(response => {
           const keys = response.headers.keys();
           const authToken = response.headers.get("authorization");
-          localStorage.setItem("authToken",authToken);
+          localStorage.setItem("authToken", authToken);
           this.openSnackBar('Login Successful', true);
           this.router.navigate(['/home']);
         },
@@ -50,6 +51,8 @@ export class LoginComponent implements OnInit {
     let config = new MatSnackBarConfig();
     config.data = data;
     config.duration = 1000;
+    config.verticalPosition = 'top';
+    config.horizontalPosition = 'end';
     if (success) {
       config.panelClass = ['success-alert'];
       this.snackBar.openFromComponent(AlertSnackbarComponent, config);

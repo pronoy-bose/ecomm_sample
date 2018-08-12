@@ -23,10 +23,8 @@ export class AuthService {
   }
 
   logOut(){
-    localStorage.removeItem("userEmail");
     localStorage.removeItem("authToken");
-    localStorage.removeItem("cartItemCount");
-    if(localStorage.getItem("userEmail")){
+    if(localStorage.getItem("authToken")){
       return true;
     }else{
       return false;
