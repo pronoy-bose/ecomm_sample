@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AlertSnackbarComponent } from './alerts/alert-snackbar/alert-snackbar.component';
 import { HomeComponent } from './content/home/home.component';
 import { EcommNavbarComponent } from './content/ecomm-navbar/ecomm-navbar.component';
+import { ProductDetailsComponent } from './content/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { EcommNavbarComponent } from './content/ecomm-navbar/ecomm-navbar.compon
     RegisterComponent,
     AlertSnackbarComponent,
     HomeComponent,
-    EcommNavbarComponent
+    EcommNavbarComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
