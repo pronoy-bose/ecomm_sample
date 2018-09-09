@@ -15,6 +15,7 @@ import { AlertSnackbarComponent } from './alerts/alert-snackbar/alert-snackbar.c
 import { HomeComponent } from './content/home/home.component';
 import { EcommNavbarComponent } from './content/ecomm-navbar/ecomm-navbar.component';
 import { ProductDetailsComponent } from './content/product-details/product-details.component';
+import { EcomNavComponent } from './content/ecom-nav/ecom-nav.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ProductDetailsComponent } from './content/product-details/product-detai
     AlertSnackbarComponent,
     HomeComponent,
     EcommNavbarComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    EcomNavComponent
   ],
   imports: [
     BrowserModule,

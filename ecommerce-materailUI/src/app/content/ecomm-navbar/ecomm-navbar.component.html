@@ -1,5 +1,5 @@
-<mat-toolbar color="primary" class="mat-elevation-z6 custom-height-toolbar sticky-toolbar">
-  <span>MyEcommWebsite</span>
+<mat-toolbar color="primary" class="mat-elevation-z6 custom-height-toolbar sticky-toolbar pl-0">
+  <span><ng-content></ng-content>MyEcommWebsite</span>
   <span class="nav-spacer"></span>
   <button mat-icon-button *ngIf="isLoggedIn">
     <mat-icon class="md-24" matBadge="{{cartItemCount}}" matBadgeColor="warn">shopping_cart</mat-icon>

@@ -1,0 +1,45 @@
+.side-nav-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.ecom-sidenav {
+    background-color: #3f51b5;
+    font-weight: bold;
+    color: #fff;
+    -webkit-box-shadow: 4px 2px 9px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 4px 2px 9px -3px rgba(0, 0, 0, 0.75);
+    box-shadow: 4px 2px 9px -3px rgba(0, 0, 0, 0.75);
+}
+
+.ecom-link-active{
+    background-color: #fff !important;
+    color: #000000 !important;
+}
+
+.ecom-sidenav .ecom-sidenav-links {
+    color: #fff;
+}
+
+.nav-toggle-button::after {
+    display: block;
+    position: absolute;
+    padding: 0.2em 0.5em;
+    border-radius: 5px;
+    font-size: 0.8em;
+    content: 'Toggle Menu';
+    background-color: rgba(9, 16, 56, 0.948);
+    color: #fff;
+    top: 0;
+    left: 0;
+    transform: scale(0);
+    transition: transform ease-out 155ms, left ease-out 155ms;
+}
+
+.nav-toggle-button:hover::after {
+    transform: scale(1);
+    left: 100%;
+}

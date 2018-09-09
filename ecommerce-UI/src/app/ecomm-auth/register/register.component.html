@@ -1,0 +1,121 @@
+<div class="register-container">
+  <form [formGroup]="registerForm">
+    <div class="card register-card">
+      <div class="card-header header-gradient">
+        <div class="row">
+          <div class="col text-left">
+            <h3>Register</h3>
+          </div>
+          <div class="col text-right mt-1">
+            <mat-icon class="md-32" matPrefix>description</mat-icon>
+          </div>
+        </div>
+      </div>
+      <div class="card-body text-center">
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-form-field class="full-width-elements">
+              <mat-icon matPrefix>email</mat-icon>
+              <input matInput placeholder="Email ID*" formControlName="userEmail">
+              <mat-error *ngIf="registerForm.get('userEmail')?.errors?.required">
+                Email ID is
+                <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="registerForm.get('userEmail')?.errors?.email">
+                Please enter
+                <strong>valid Email</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-6">
+            <mat-form-field class="full-width-elements">
+              <mat-icon matPrefix>lock</mat-icon>
+              <input matInput placeholder="Password*" formControlName="userPassword" [type]="hide ? 'text' : 'password'">
+              <mat-icon matSuffix class="md-18 pointer-hand" (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+              <mat-error *ngIf="!registerForm.get('userPassword').valid">
+                Password is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-sm-4">
+            <mat-form-field class="full-width-elements">
+              <input matInput placeholder="First Name*" formControlName="userFirstName">
+              <mat-icon matPrefix>face</mat-icon>
+              <mat-error *ngIf="!registerForm.get('userFirstName').valid">
+                First Name is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+            <mat-form-field class="full-width-elements">
+              <mat-icon matPrefix>face</mat-icon>
+              <input matInput placeholder="Last Name*" formControlName="userLastName">
+              <mat-error *ngIf="!registerForm.get('userLastName').valid">
+                Last Name is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+            <mat-form-field class="full-width-elements">
+              <mat-icon matPrefix>phone</mat-icon>
+              <input matInput placeholder="Phone*" formControlName="userPhone">
+              <mat-error *ngIf="!registerForm.get('userPhone').valid">
+                Phone Number is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-sm-3">
+            <mat-form-field class="full-width-elements">
+              <mat-icon matPrefix>location_city</mat-icon>
+              <input matInput placeholder="City" formControlName="userCity">
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field class="full-width-elements">
+              <mat-icon matPrefix>location_city</mat-icon>
+              <input matInput placeholder="State" formControlName="userState">
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field class="full-width-elements">
+              <mat-icon matPrefix>location_city</mat-icon>
+              <input matInput placeholder="Zip" formControlName="userZip">
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field class="full-width-elements">
+              <mat-icon matPrefix>location_city</mat-icon>
+              <input matInput placeholder="Country" formControlName="userCountry">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <mat-form-field class="full-width-elements">
+              <mat-icon matPrefix>location_city</mat-icon>
+              <textarea matInput placeholder="Address" formControlName="userAddress"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col text-left">
+            <a class="md-18 btn-link" mat-raised-button routerLink="/login">Back to Login</a>
+          </div>
+          <div class="col text-right">
+            <button class="md-18 ml-2" mat-raised-button color="primary" (click)="onRegisterFormSubmit()">Register</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
