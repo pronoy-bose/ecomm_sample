@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
           const authToken = response.headers.get("authorization");
           localStorage.setItem("authToken", authToken);
           this.openSnackBar('Login Successful', true);
-          this.router.navigate(['/user']);
+          this.router.navigate(['/home']);
         },
           error => {
             this.openSnackBar('Login Failed', false);

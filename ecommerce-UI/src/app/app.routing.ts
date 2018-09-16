@@ -12,6 +12,11 @@ const routes: Routes = [
     path: 'user',
     loadChildren: '../app/ecomm-users/ecomm-users.module#EcommUsersModule',
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'home',
+    loadChildren: '../app/shop-area/shop-area.module#ShopAreaModule',
+    // canActivate: [AuthGuard]
   }
 ];
 

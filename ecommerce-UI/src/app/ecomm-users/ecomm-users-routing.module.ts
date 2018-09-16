@@ -4,7 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path:'',
+    redirectTo:'profile',
+    pathMatch:'full'
+  },
+  {
+    path: 'profile',
     component: ProfileComponent
   }
 ];

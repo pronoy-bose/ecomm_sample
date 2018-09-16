@@ -1,0 +1,72 @@
+/* Content hover properties */
+
+.content-card {
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(176, 176, 176, 1) !important;
+    -moz-box-shadow: 0px 0px 5px 0px rgba(176, 176, 176, 1) !important;
+    box-shadow: 0px 0px 5px 0px rgba(176, 176, 176, 1) !important;
+}
+
+.product-thumb-img {
+    padding: 1%;
+    height: 250px;
+    width: 100%;
+}
+
+.add-cart-btn {
+    position: absolute;
+    bottom: 8%;
+}
+
+.show-details-btn {
+    position: absolute;
+    left: 0;
+    top: 8%;
+}
+
+.product-header {
+    padding: 10px !important;
+}
+
+.product-btn::after {
+    display: block;
+    position: absolute;
+    padding: 0.2em 0.5em;
+    border-radius: 5px;
+    font-size: 0.8em;
+    content: 'Product Details';
+    background-color: #ff4081;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 10%;
+    right:0;
+    top: 50%;
+    transform: scale(0);
+    transition: transform ease-out 155ms, top ease-out 155ms;
+}
+
+.product-btn:hover::after {
+    transform: scale(1);
+    top: 100%;
+}
+
+.cart-btn::after {
+    display: block;
+    position: absolute;
+    padding: 0.2em 0.5em;
+    border-radius: 5px;
+    font-size: 0.8em;
+    content: 'Add To Cart';
+    background-color: #3f51b5;
+    font-weight: bold;
+    color: #fff;
+    margin-right: 10%;
+    top:0;
+    right: 50%;
+    transform: scale(0);
+    transition: transform ease-out 155ms, right ease-out 155ms;
+}
+
+.cart-btn:hover::after {
+    transform: scale(1);
+    right: 100%;
+}

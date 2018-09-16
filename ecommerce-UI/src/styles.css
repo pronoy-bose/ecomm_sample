@@ -80,16 +80,3 @@ html {
     font-size: 14px;
     font-weight: 600;
 }
-
-/* Content hover properties */
-
-.content-card:hover {
-    -webkit-box-shadow: 0px 1px 10px 3px rgba(176, 176, 176, 1) !important;
-    -moz-box-shadow: 0px 1px 10px 3px rgba(176, 176, 176, 1) !important;
-    box-shadow: 0px 1px 10px 3px rgba(176, 176, 176, 1) !important;
-}
-
-.product-thumb-img{
-    height:180px;
-    width:300px;
-}

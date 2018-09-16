@@ -1,4 +1,4 @@
-import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatChipsModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -22,7 +22,8 @@ import { NgModule } from '@angular/core';
     MatCardModule,
     MatBadgeModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatChipsModule
   ],
   exports: [
     MatButtonModule,
@@ -35,7 +36,8 @@ import { NgModule } from '@angular/core';
     MatCardModule,
     MatBadgeModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatChipsModule
   ],
 })
 export class MaterialModule { }

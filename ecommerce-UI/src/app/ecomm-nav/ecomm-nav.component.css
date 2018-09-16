@@ -1,0 +1,14 @@
+.nav-spacer {
+    flex: 1 1 auto;
+}
+
+.custom-height-toolbar {
+    height: 50px;
+}
+
+.sticky-toolbar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}

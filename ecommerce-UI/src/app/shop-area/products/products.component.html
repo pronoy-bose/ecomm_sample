@@ -1,0 +1,54 @@
+<!-- <div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col-md-3 mt-2" *ngFor="let product of products">
+      <mat-card class="content-card" (click)="cardClicked()">
+        <img mat-card-image class="product-thumb-img" [src]="product.imageURL" alt="Photo of a Shiba Inu">
+        <mat-card-content class="d-flex justify-content-center">
+          <mat-chip-list>
+            <mat-chip color="primary">{{product.productName}}</mat-chip>
+            <mat-chip color="primary">Price : {{product.productPrice}}</mat-chip>
+          </mat-chip-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div> -->
+
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col-md-3 mt-2" *ngFor="let product of products">
+      <div class="card content-card">
+        <div class="card-header product-header d-flex justify-content-center">
+          <div class="row">
+            <div class="col d-flex justify-content-center">
+              <h5>{{product.productName}}</h5>
+            </div>
+            <!-- <div class="col text-right show-details-btn">
+              <button class="product-btn" mat-mini-fab color="accent">
+                <mat-icon class="md-24">dvr</mat-icon>
+              </button>
+            </div> -->
+          </div>
+        </div>
+        <div class="card-body">
+          <img class="product-thumb-img" [src]="product.imageURL">
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col text-left">
+              <h6>Price : {{product.productPrice}}</h6>
+            </div>
+            <div class="col text-right add-cart-btn">
+              <button mat-mini-fab class="cart-btn mr-2" color="primary">
+                <mat-icon class="md-24">shopping_cart</mat-icon>
+              </button>
+              <button class="product-btn" mat-mini-fab color="accent">
+                <mat-icon class="md-24">dvr</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
