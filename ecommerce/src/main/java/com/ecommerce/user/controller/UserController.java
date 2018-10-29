@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecommece.VO.CartItemsVO;
+import com.ecommerce.model.Cart;
+import com.ecommerce.model.Cartitems;
 import com.ecommerce.model.Users;
-import com.ecommerce.user.VO.LoginVO;
 import com.ecommerce.user.VO.UserVO;
 import com.ecommerce.user.service.IUserService;
 
@@ -60,6 +61,13 @@ public class UserController {
 			// TODO Auto-generated catch block
 			return new ResponseEntity<HashMap<String, String>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+	
+	@PostMapping(path="/addToCart")
+	public ResponseEntity<List<CartItemsVO>> addToCart(@RequestBody Cart cartItem){
+		List<CartItemsVO> cartList = userService.addToCart(cartItem);
+		return new ResponseEntity<List<CartItemsVO>>(cartList, HttpStatus.OK);
+		
 	}
 
 }

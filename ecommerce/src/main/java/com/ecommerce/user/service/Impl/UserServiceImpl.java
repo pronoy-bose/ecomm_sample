@@ -1,14 +1,22 @@
 package com.ecommerce.user.service.Impl;
 
 import java.security.MessageDigest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ecommece.VO.CartItemsVO;
+import com.ecommerce.mapper.CartItemsMapper;
+import com.ecommerce.model.Cart;
+import com.ecommerce.model.Cartitems;
 import com.ecommerce.model.Users;
+import com.ecommerce.shopArea.repository.CartItemRepository;
+import com.ecommerce.shopArea.repository.CartRepository;
 import com.ecommerce.user.VO.LoginVO;
 import com.ecommerce.user.VO.UserVO;
 import com.ecommerce.user.mapper.UserMapper;
@@ -19,7 +27,13 @@ import com.ecommerce.user.service.IUserService;
 public class UserServiceImpl implements IUserService {
 	@Autowired
 	private UserRepository userRepository;
-
+	
+	@Autowired
+	private CartRepository cartRepository;
+	
+	@Autowired
+	private CartItemRepository cartItemRepository;
+	
 	@Override
 	public UserVO findByUserEmail(String userEmail) {
 		// TODO Auto-generated method stub
@@ -91,6 +105,18 @@ public class UserServiceImpl implements IUserService {
 	                .substring(1));
 	    }
 	    return stringBuffer.toString();
+	}
+
+	@Override
+	public List<CartItemsVO> addToCart(Cart cartItem) {
+		
+		Cart savedCart = cartRepository.save(cartItem);
+		List<Cartitems> cartItemsList = new ArrayList<Cartitems>();
+		CartItemsMapper cartItemsMapper = new CartItemsMapper();
+		if(Optional.ofNullable(savedCart.getCartId()).isPresent()){
+			cartItemsList = cartItemRepository.findByCart_CartId(savedCart.getCartId());
+		}
+		return cartItemsMapper.toCartItemsVOList(cartItemsList);
 	}
 
 }

@@ -39,7 +39,7 @@
               <h6>Price : {{product.productPrice}}</h6>
             </div>
             <div class="col text-right add-cart-btn">
-              <button mat-mini-fab class="cart-btn mr-2" color="primary">
+              <button mat-mini-fab class="cart-btn mr-2" color="primary" (click)="addToCart(product)">
                 <mat-icon class="md-24">shopping_cart</mat-icon>
               </button>
               <button class="product-btn" mat-mini-fab color="accent">

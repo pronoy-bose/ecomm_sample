@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: '../app/shop-area/shop-area.module#ShopAreaModule',
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   }
 ];
 

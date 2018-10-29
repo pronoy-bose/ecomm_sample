@@ -17,4 +17,8 @@ export class ShopAreaService {
     // };
     return this.http.get("/api/getAllProducts");
   }
+
+  addToCart(cartItem):Observable<any>{
+    return this.http.post("/api/addToCart",cartItem);
+  }
 }

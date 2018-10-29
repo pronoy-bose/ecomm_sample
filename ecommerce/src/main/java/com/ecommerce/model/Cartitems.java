@@ -5,7 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.GenerationType;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,6 +19,10 @@ import javax.persistence.Table;
 @Table(name = "cartitems", catalog = "ecommerce")
 public class Cartitems implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer cartItemId;
 	private Cart cart;
 	private Products products;
@@ -41,7 +46,7 @@ public class Cartitems implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
 	@Column(name = "CartItemID", unique = true, nullable = false)
 	public Integer getCartItemId() {
@@ -62,7 +67,7 @@ public class Cartitems implements java.io.Serializable {
 		this.cart = cart;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ProductID", nullable = false)
 	public Products getProducts() {
 		return this.products;

@@ -3,11 +3,14 @@ package com.ecommerce.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.GenerationType;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,6 +24,10 @@ import javax.persistence.Table;
 @Table(name = "cart", catalog = "ecommerce")
 public class Cart implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer cartId;
 	private Users users;
 	private List<Cartitems> cartitemses = new ArrayList<Cartitems>();
@@ -38,7 +45,7 @@ public class Cart implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
 	@Column(name = "CartID", unique = true, nullable = false)
 	public Integer getCartId() {
@@ -59,7 +66,7 @@ public class Cart implements java.io.Serializable {
 		this.users = users;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cart")
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cart")
 	public List<Cartitems> getCartitemses() {
 		return this.cartitemses;
 	}
