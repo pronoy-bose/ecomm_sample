@@ -2,6 +2,7 @@ package com.ecommerce.user.service.Impl;
 
 import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -27,17 +28,17 @@ import com.ecommerce.user.service.IUserService;
 public class UserServiceImpl implements IUserService {
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private CartRepository cartRepository;
-	
+
 	@Autowired
 	private CartItemRepository cartItemRepository;
-	
+
 	@Override
 	public UserVO findByUserEmail(String userEmail) {
 		// TODO Auto-generated method stub
-		Users findUser =  userRepository.findByUserEmail(userEmail);
+		Users findUser = userRepository.findByUserEmail(userEmail);
 		UserMapper mapUser = new UserMapper();
 		UserVO userVO = mapUser.toUserVO(findUser);
 		return userVO;
@@ -50,10 +51,10 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public UserVO findByUserEmailAndUserPassword(LoginVO loginVO) throws NullPointerException,Exception {
+	public UserVO findByUserEmailAndUserPassword(LoginVO loginVO) throws NullPointerException, Exception {
 		// TODO Auto-generated method stub
 		Users findUser = userRepository.findByUserEmail(loginVO.getUserEmail());
-		String hashedPassword = hashString(loginVO.getUserPassword(),findUser.getUserVerificationCode()); 
+		String hashedPassword = hashString(loginVO.getUserPassword(), findUser.getUserVerificationCode());
 		Users user = userRepository.findByUserEmailAndUserPassword(loginVO.getUserEmail(), hashedPassword);
 		UserMapper mapUser = new UserMapper();
 		UserVO userVO = mapUser.toUserVO(user);
@@ -71,7 +72,7 @@ public class UserServiceImpl implements IUserService {
 				return responseMap;
 			} else {
 				String salt = getRandomKey();
-				String hashedPassword = hashString(user.getUserPassword(),salt);
+				String hashedPassword = hashString(user.getUserPassword(), salt);
 				user.setUserVerificationCode(salt);
 				user.setUserPassword(hashedPassword);
 				userRepository.save(user);
@@ -84,37 +85,57 @@ public class UserServiceImpl implements IUserService {
 			return responseMap;
 		}
 	}
-	
-	private static String getRandomKey(){
+
+	private static String getRandomKey() {
 		return UUID.randomUUID().toString();
 	}
 
-	private static String hashString(String password,String salt) throws Exception {
+	private static String hashString(String password, String salt) throws Exception {
 
 		MessageDigest digest = MessageDigest.getInstance("SHA-256");
-		byte[] hashedBytes = digest.digest((password+salt).getBytes("UTF-8"));
+		byte[] hashedBytes = digest.digest((password + salt).getBytes("UTF-8"));
 
 		return convertByteArrayToHexString(hashedBytes);
 
 	}
-	
+
 	private static String convertByteArrayToHexString(byte[] arrayBytes) {
-	    StringBuffer stringBuffer = new StringBuffer();
-	    for (int i = 0; i < arrayBytes.length; i++) {
-	        stringBuffer.append(Integer.toString((arrayBytes[i] & 0xff) + 0x100, 16)
-	                .substring(1));
-	    }
-	    return stringBuffer.toString();
+		StringBuffer stringBuffer = new StringBuffer();
+		for (int i = 0; i < arrayBytes.length; i++) {
+			stringBuffer.append(Integer.toString((arrayBytes[i] & 0xff) + 0x100, 16).substring(1));
+		}
+		return stringBuffer.toString();
 	}
 
 	@Override
-	public List<CartItemsVO> addToCart(Cart cartItem) {
-		
-		Cart savedCart = cartRepository.save(cartItem);
+	public Integer addToCart(Cart cart) {
+		Cartitems cartItem = cartItemRepository
+				.findByProducts_ProductId(cart.getCartitemses().get(0).getProducts().getProductId());
+		if (Optional.ofNullable(cartItem).isPresent()) {
+			cartItem.setQuantity(cartItem.getQuantity() + 1);
+			cart.setCartitemses(Arrays.asList(cartItem));
+		}
+		Cart savedCart = cartRepository.save(cart);
+		Integer cartItemCount = 0;
+		if (Optional.ofNullable(savedCart.getCartId()).isPresent()) {
+			cartItemCount = cartItemRepository.getCartItemCount(savedCart.getCartId());
+		}
+		return cartItemCount;
+	}
+
+	@Override
+	public Integer getCartItemCount(Integer cartId) {
+		Integer cartItemCount = 0;
+		cartItemCount = cartItemRepository.getCartItemCount(cartId);
+		return cartItemCount;
+	}
+
+	@Override
+	public List<CartItemsVO> getCartItems(Integer cartId) {
 		List<Cartitems> cartItemsList = new ArrayList<Cartitems>();
 		CartItemsMapper cartItemsMapper = new CartItemsMapper();
-		if(Optional.ofNullable(savedCart.getCartId()).isPresent()){
-			cartItemsList = cartItemRepository.findByCart_CartId(savedCart.getCartId());
+		if (Optional.ofNullable(cartId).isPresent()) {
+			cartItemsList = cartItemRepository.findByCart_CartId(cartId);
 		}
 		return cartItemsMapper.toCartItemsVOList(cartItemsList);
 	}

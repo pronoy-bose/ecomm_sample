@@ -1,0 +1,24 @@
+.main-img-area {
+    height: 50vh;
+    width: 100%;
+}
+
+.img-thumb {
+    height: 100%;
+    width: 100%;
+}
+
+.sticky-area {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 4.2rem;
+    max-height: 95vh;
+}
+
+.mat-card-full-width {
+    width: 100%;
+}
+
+.container-background {
+    background-color: #fff;
+}

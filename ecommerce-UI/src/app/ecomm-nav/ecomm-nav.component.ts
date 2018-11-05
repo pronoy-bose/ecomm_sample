@@ -1,3 +1,4 @@
+import { ShopAreaService } from './../shop-area/shop-area.service';
 import { AlertSnackbarComponent } from './../alert-snackbar/alert-snackbar.component';
 import { Router } from '@angular/router';
 import { AuthService } from './../ecomm-auth/auth.service';
@@ -12,17 +13,24 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 export class EcommNavComponent implements OnInit {
   isLoggedIn: Boolean;
   authToken: String;
-  cartItemCount: Number=0;
+  cartItemCount: Number = 0;
 
-  constructor(private authService: AuthService, private router: Router, public snackBar: MatSnackBar) { }
+  constructor(private authService: AuthService, private router: Router, public snackBar: MatSnackBar,
+    private shopAreaService: ShopAreaService) { }
 
   ngOnInit() {
+    this.shopAreaService.cartCount.subscribe(userCartItemCount => {
+      this.cartItemCount = userCartItemCount;
+    });
     this.authToken = localStorage.getItem("authToken");
     if (this.authToken) {
       this.isLoggedIn = true;
     } else {
       this.isLoggedIn = false;
     }
+    this.shopAreaService.getCartItemCount().subscribe(x => {
+      this.shopAreaService.updatedCartCount(x);
+    })
   }
 
   goToMyAccount() {

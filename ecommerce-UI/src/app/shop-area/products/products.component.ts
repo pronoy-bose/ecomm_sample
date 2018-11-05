@@ -1,5 +1,7 @@
 import { ShopAreaService } from './../shop-area.service';
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import { AlertSnackbarComponent } from './../../alert-snackbar/alert-snackbar.component';
 
 @Component({
   selector: 'app-products',
@@ -8,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsComponent implements OnInit {
   products: Product[];
-  constructor(private shopAreaService: ShopAreaService) { }
+  constructor(private shopAreaService: ShopAreaService, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.shopAreaService.getAllProducts().subscribe(x => {
@@ -24,28 +26,41 @@ export class ProductsComponent implements OnInit {
     console.log("Card Clicked");
   }
 
-  addToCart(product){
-    // let cart:Cart = new Cart();
-    // cart.userId = 2;
-    // cart.cartItemses[0].productId = product.productId;
-    // cart.cartItemses[0].productPrice = product.productPrice;
-    // cart.cartItemses[0].productQuantity = 1;
-    // console.log(cart);
+  addToCart(product) {
     let cart = {
       cartId: 2,
-      users:{userId: 2},
-      cartitemses:[{
-        products:{productId:product.productId},
-        cart:{cartId:2},
-        price:product.productPrice,
-        quantity:1
+      users: { userId: 2 },
+      cartitemses: [{
+        products: { productId: product.productId },
+        cart: { cartId: 2 },
+        price: product.productPrice,
+        quantity: 1
       }]
     };
-    console.log(cart);
-    this.shopAreaService.addToCart(cart).subscribe(x=>{
-      console.log(x);
-    })
-    
+
+    this.shopAreaService.addToCart(cart).subscribe(x => {
+      this.shopAreaService.updatedCartCount(x);
+      this.openSnackBar('Item Added to Cart', true);
+    },
+      error => {
+        this.openSnackBar('Failed to add to cart. Try again later', false);
+      })
+
+  }
+
+  openSnackBar(data, success) {
+    let config = new MatSnackBarConfig();
+    config.data = data;
+    config.duration = 1000;
+    config.verticalPosition = 'top';
+    config.horizontalPosition = 'end';
+    if (success) {
+      config.panelClass = ['success-alert'];
+      this.snackBar.openFromComponent(AlertSnackbarComponent, config);
+    } else {
+      config.panelClass = ['fail-alert'];
+      this.snackBar.openFromComponent(AlertSnackbarComponent, config);
+    }
   }
 
 }

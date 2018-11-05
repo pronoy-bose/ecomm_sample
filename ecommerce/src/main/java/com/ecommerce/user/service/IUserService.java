@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.ecommece.VO.CartItemsVO;
 import com.ecommerce.model.Cart;
-import com.ecommerce.model.Cartitems;
 import com.ecommerce.model.Users;
 import com.ecommerce.user.VO.LoginVO;
 import com.ecommerce.user.VO.UserVO;
@@ -20,5 +19,9 @@ public interface IUserService {
 	
 	HashMap<String, String> save(Users user);
 	
-	List<CartItemsVO> addToCart(Cart cartItem);
+	Integer addToCart(Cart cartItem);
+
+	List<CartItemsVO> getCartItems(Integer cartId);
+
+	Integer getCartItemCount(Integer cartId);
 }

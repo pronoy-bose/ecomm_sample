@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -7,18 +7,24 @@ import { Injectable } from '@angular/core';
 })
 export class ShopAreaService {
 
+  private cartCountSource = new BehaviorSubject<Number>(0);
+  cartCount = this.cartCountSource.asObservable();
+
   constructor(private http: HttpClient) { }
 
+  updatedCartCount(cartCount: Number) {
+    this.cartCountSource.next(cartCount);
+  }
+
   getAllProducts(): Observable<any> {
-    // let authToken = localStorage.getItem("authToken");
-    // var headers = new HttpHeaders().set('Authorization', authToken);
-    // var options = {
-    //   headers: headers
-    // };
     return this.http.get("/api/getAllProducts");
   }
 
-  addToCart(cartItem):Observable<any>{
-    return this.http.post("/api/addToCart",cartItem);
+  addToCart(cartItem): Observable<any> {
+    return this.http.post("/api/addToCart", cartItem);
+  }
+
+  getCartItemCount(): Observable<any> {
+    return this.http.get("/api/getCartItemCount/2");
   }
 }
