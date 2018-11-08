@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.model.Cart;
@@ -59,7 +60,10 @@ public class UserController {
 	}
 
 	@PostMapping(path = "/addToCart")
-	public ResponseEntity<Integer> addToCart(@RequestBody Cart cartItem) {
+	public ResponseEntity<Integer> addToCart(@RequestHeader("userId") Users user, @RequestBody Cart cartItem) {
+		cartItem.setCartId(user.getUserId());
+		cartItem.setUsers(user);
+		cartItem.getCartitemses().get(0).setCart(cartItem);;
 		Integer cartItemCount = 0;
 		try {
 			cartItemCount = userService.addToCart(cartItem);
@@ -70,8 +74,8 @@ public class UserController {
 
 	}
 
-	@GetMapping(path = "/getCartItemCount/{cartId}")
-	public ResponseEntity<Integer> getCartItemCount(@PathVariable Integer cartId) {
+	@GetMapping(path = "/getCartItemCount")
+	public ResponseEntity<Integer> getCartItemCount(@RequestHeader("userId") Integer cartId) {
 		Integer cartItemCount = 0;
 		try {
 			cartItemCount = userService.getCartItemCount(cartId);

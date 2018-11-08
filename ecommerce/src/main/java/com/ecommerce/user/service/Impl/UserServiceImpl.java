@@ -109,8 +109,8 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public Integer addToCart(Cart cart) {
-		Cartitems cartItem = cartItemRepository
-				.findByProducts_ProductId(cart.getCartitemses().get(0).getProducts().getProductId());
+		Cartitems cartItem = cartItemRepository.findByCart_CartIdAndProducts_ProductId(cart.getCartId(),
+				cart.getCartitemses().get(0).getProducts().getProductId());
 		if (Optional.ofNullable(cartItem).isPresent()) {
 			cartItem.setQuantity(cartItem.getQuantity() + 1);
 			cart.setCartitemses(Arrays.asList(cartItem));

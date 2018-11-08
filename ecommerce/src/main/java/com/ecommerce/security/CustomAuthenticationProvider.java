@@ -14,7 +14,10 @@ import com.ecommerce.user.VO.UserVO;
 import com.ecommerce.user.service.IUserService;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
+import java.util.Map;
+import static com.ecommerce.security.SecurityConstants.USER_EMAIL_HEADER;
+import static com.ecommerce.security.SecurityConstants.USER_ID_HEADER;
 import org.springframework.security.authentication.BadCredentialsException;
 
 @Component
@@ -40,8 +43,11 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			throw new BadCredentialsException("Authentication failed for user = " + userEmail);
 		}
 
-		UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userEmail, userPassword,
-				new ArrayList<>());
+		Map<String, String> loggedInUserMap = new HashMap<String, String>();
+		loggedInUserMap.put(USER_EMAIL_HEADER, userVO.getUserEmail());
+		loggedInUserMap.put(USER_ID_HEADER, userVO.getUserId().toString());
+		UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(loggedInUserMap,
+				userPassword, new ArrayList<>());
 
 		logger.info("Succesful Authentication with user = " + userEmail);
 		return auth;

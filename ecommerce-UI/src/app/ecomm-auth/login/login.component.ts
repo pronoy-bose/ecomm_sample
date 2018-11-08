@@ -38,7 +38,9 @@ export class LoginComponent implements OnInit {
         .subscribe(response => {
           const keys = response.headers.keys();
           const authToken = response.headers.get("authorization");
+          const userId = response.headers.get("userid");
           localStorage.setItem("authToken", authToken);
+          localStorage.setItem("userId", userId);
           this.openSnackBar('Login Successful', true);
           this.router.navigate(['/home']);
         },

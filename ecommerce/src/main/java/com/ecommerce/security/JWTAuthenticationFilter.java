@@ -16,12 +16,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 import static com.ecommerce.security.SecurityConstants.EXPIRATION_TIME;
 import static com.ecommerce.security.SecurityConstants.HEADER_STRING;
 import static com.ecommerce.security.SecurityConstants.SECRET;
 import static com.ecommerce.security.SecurityConstants.TOKEN_PREFIX;
+import static com.ecommerce.security.SecurityConstants.USER_ID_HEADER;
+import static com.ecommerce.security.SecurityConstants.USER_EMAIL_HEADER;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
@@ -53,12 +57,14 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             HttpServletResponse res,
                                             FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
-    	
+    	Map<String,String> loggedInUserDetails = new HashMap<String,String>();
+    	loggedInUserDetails = (Map<String, String>) auth.getPrincipal();
         String token = JWT.create()
-                .withSubject((auth.getPrincipal().toString()))
+                .withSubject((loggedInUserDetails.get(USER_EMAIL_HEADER)))
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(HMAC512(SECRET.getBytes()));
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+        res.addHeader(USER_ID_HEADER, loggedInUserDetails.get(USER_ID_HEADER));
     }
     
     @Override

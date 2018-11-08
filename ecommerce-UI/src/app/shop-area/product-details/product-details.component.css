@@ -1,5 +1,5 @@
 .main-img-area {
-    height: 50vh;
+    height: 40vh;
     width: 100%;
 }
 
@@ -8,17 +8,18 @@
     width: 100%;
 }
 
-.sticky-area {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 4.2rem;
-    max-height: 95vh;
-}
-
 .mat-card-full-width {
     width: 100%;
 }
 
 .container-background {
     background-color: #fff;
+}
+
+/* .mat-dialog-content {
+    max-height: 70vh !important;
+} */
+
+.image-area-container .mat-card {
+    padding: 10px !important;
 }

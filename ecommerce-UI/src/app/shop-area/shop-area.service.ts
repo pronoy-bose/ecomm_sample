@@ -25,6 +25,6 @@ export class ShopAreaService {
   }
 
   getCartItemCount(): Observable<any> {
-    return this.http.get("/api/getCartItemCount/2");
+    return this.http.get("/api/getCartItemCount");
   }
 }

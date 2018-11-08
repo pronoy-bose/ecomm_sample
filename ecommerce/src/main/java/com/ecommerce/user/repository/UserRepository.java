@@ -12,7 +12,7 @@ import org.springframework.data.repository.CrudRepository;
 public interface UserRepository extends CrudRepository<Users,Integer>{
 	Users findByUserEmail(String userEmail);
 	
-	Users findByUserEmailAndUserPassword(String userEmail,String userPAssword);
+	Users findByUserEmailAndUserPassword(String userEmail,String userPassword);
 	
 	List<Users> findAll();
 	
