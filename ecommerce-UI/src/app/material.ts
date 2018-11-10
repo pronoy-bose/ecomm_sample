@@ -1,13 +1,13 @@
-import { MatButtonModule, MatCheckboxModule, MatChipsModule, MatDialogModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatChipsModule, MatDialogModule, MatProgressBarModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
-import {MatCardModule} from '@angular/material/card';
-import {MatBadgeModule} from '@angular/material/badge';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 import { NgModule } from '@angular/core';
 
 @NgModule({
@@ -24,7 +24,8 @@ import { NgModule } from '@angular/core';
     MatSidenavModule,
     MatListModule,
     MatChipsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressBarModule
   ],
   exports: [
     MatButtonModule,
@@ -39,7 +40,8 @@ import { NgModule } from '@angular/core';
     MatSidenavModule,
     MatListModule,
     MatChipsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressBarModule
   ],
 })
 export class MaterialModule { }

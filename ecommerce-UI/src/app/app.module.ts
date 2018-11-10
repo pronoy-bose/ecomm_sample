@@ -9,11 +9,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AlertSnackbarComponent } from './alert-snackbar/alert-snackbar.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AlertSnackbarComponent
+    AlertSnackbarComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
