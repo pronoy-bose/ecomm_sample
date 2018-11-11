@@ -1,22 +1,26 @@
-// import { ErrorInterceptor } from './../helpers/error.interceptor';
-// import { JwtInterceptor } from './../helpers/jwt.interceptor';
+import { SharedModule } from './../shared/shared.module';
+import { MaterialModule } from './../material';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { EcommUsersRoutingModule } from './ecomm-users-routing.module';
 import { ProfileComponent } from './profile/profile.component';
+import { CartDetailsComponent } from './cart-details/cart-details.component';
+import { UserHomeComponent } from './user-home/user-home.component';
 
 @NgModule({
   imports: [
     CommonModule,
     EcommUsersRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule,
+    SharedModule
   ],
-  declarations: [ProfileComponent],
-  // providers: [
-  //   { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-  //   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
-  // ]
+  declarations: [
+    ProfileComponent,
+    CartDetailsComponent,
+    UserHomeComponent
+  ],
 })
 export class EcommUsersModule { }

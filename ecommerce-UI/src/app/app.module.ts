@@ -29,7 +29,7 @@ import { LoaderComponent } from './loader/loader.component';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   entryComponents: [
-    AlertSnackbarComponent,
+    AlertSnackbarComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -9,9 +9,7 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 export class ProductDetailsComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public product: any) {
-    console.log(product);
-    
-   }
+  }
 
   ngOnInit() {
   }

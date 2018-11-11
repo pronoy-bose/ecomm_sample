@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecommece.VO.CartItemsVO;
 import com.ecommerce.model.Cart;
 import com.ecommerce.model.Users;
 import com.ecommerce.user.VO.UserVO;
@@ -63,7 +64,8 @@ public class UserController {
 	public ResponseEntity<Integer> addToCart(@RequestHeader("userId") Users user, @RequestBody Cart cartItem) {
 		cartItem.setCartId(user.getUserId());
 		cartItem.setUsers(user);
-		cartItem.getCartitemses().get(0).setCart(cartItem);;
+		cartItem.getCartitemses().get(0).setCart(cartItem);
+		;
 		Integer cartItemCount = 0;
 		try {
 			cartItemCount = userService.addToCart(cartItem);
@@ -83,6 +85,17 @@ public class UserController {
 			return new ResponseEntity<Integer>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return new ResponseEntity<Integer>(cartItemCount, HttpStatus.OK);
+	}
+
+	@GetMapping(path = "/getCartItems")
+	public ResponseEntity<List<CartItemsVO>> getCartItems(@RequestHeader("userId") Integer cartId) {
+		List<CartItemsVO> cartItemsList = null;
+		try {
+			cartItemsList = userService.getCartItems(cartId);
+		} catch (Exception e) {
+			return new ResponseEntity<List<CartItemsVO>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<List<CartItemsVO>>(cartItemsList, HttpStatus.OK);
 	}
 
 }

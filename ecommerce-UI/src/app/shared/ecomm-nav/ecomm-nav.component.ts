@@ -1,7 +1,7 @@
-import { ShopAreaService } from './../shop-area/shop-area.service';
-import { AlertSnackbarComponent } from './../alert-snackbar/alert-snackbar.component';
+import { AlertSnackbarComponent } from './../../alert-snackbar/alert-snackbar.component';
+import { ShopAreaService } from './../../shop-area/shop-area.service';
+import { AuthService } from './../../ecomm-auth/auth.service';
 import { Router } from '@angular/router';
-import { AuthService } from './../ecomm-auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 
@@ -36,6 +36,10 @@ export class EcommNavComponent implements OnInit {
   goToMyAccount() {
   }
 
+  getCartItems(){
+    this.router.navigateByUrl("/user/cart");
+  }
+
   logOut() {
     this.isLoggedIn = this.authService.logOut();
     if (!this.isLoggedIn) {
@@ -60,8 +64,6 @@ export class EcommNavComponent implements OnInit {
       config.panelClass = ['fail-alert'];
       this.snackBar.openFromComponent(AlertSnackbarComponent, config);
     }
-
-    console.log("Done");
   }
 
 }

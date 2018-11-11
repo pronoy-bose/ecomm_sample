@@ -38,12 +38,10 @@ export class JwtInterceptor implements HttpInterceptor {
     }
 
     private showLoader(): void {
-        console.log("Showing loader");
         this.loaderService.show();
     }
 
     private hideLoader(): void {
-        console.log("Hiding loader");
         this.loaderService.hide();
     }
 }

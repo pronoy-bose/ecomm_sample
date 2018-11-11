@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row mt-3">
+    <div class="col-md-3">
+      <h3>Cart</h3>
+    </div>
+    <div class="col-md-9 text-right">
+      <span class="badge badge-pill badge-primary total-badge">Total : {{totalCartValue}}</span>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col">
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let cartItem of cartItems">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{cartItem.productsVO.productName}}
+            </mat-panel-title>
+            <mat-panel-description>
+              <div class="col-md-6">
+                Quantity : {{cartItem.quantity}}
+              </div>
+              <div>
+                Price : {{cartItem.price * cartItem.quantity}}
+              </div>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="row">
+            <div class="col-md-4 text-right">
+              <img class="product-img" [src]="cartItem.productsVO.imageURL">
+            </div>
+            <div class="col-md-8 mt-3">
+              <h5>{{cartItem.productsVO.productShortDesc}}</h5>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>
