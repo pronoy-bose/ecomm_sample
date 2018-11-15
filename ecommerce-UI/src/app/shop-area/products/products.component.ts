@@ -1,3 +1,4 @@
+import { Product } from './../Product';
 import { ProductDetailsComponent } from './../product-details/product-details.component';
 import { ShopAreaService } from './../shop-area.service';
 import { Component, OnInit } from '@angular/core';

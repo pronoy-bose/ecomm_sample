@@ -1,9 +1,9 @@
-class ImageModel{
+export class ImageModel{
     imageName:String;
     imageData:any;
 }
 
-class Product {
+export class Product {
     imageFileList: ImageModel[];
     productCartDesc: String;
     productId: Number;
